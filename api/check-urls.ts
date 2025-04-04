@@ -7,6 +7,7 @@
 */
 
 import http from "http";
+import https from "node:https"
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
 interface UrlStatus {
