@@ -8,7 +8,7 @@
     ],
     "routes":[
         {"src":"/api/check-urls",
-         "dest":"/api/check-urls.ts"
+         "dest":"/api/check-urls"
             
         }
     ]
