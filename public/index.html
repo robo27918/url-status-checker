@@ -8,7 +8,7 @@
 <body class="bg-gray-500">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-white">URL Checker</h1>
     <div class="container  flex flex-col gap-5 w-full">
-        <div class="mb-6 flex flex-col gap-2 justify-center items-center">
+        <div id="inputContainer"class="mb-6 flex flex-col gap-2 justify-center items-center">
             <label for="url" class="text-white block mb-2 font-semibold">Enter url</label>    
             <input class="border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block"type="text" id="url-1" 
             placeholder="http://something.com"
@@ -16,6 +16,7 @@
         </div>
         
     
+
         
         <div class="button-container flex flex-row justify-center">
             <button type="button" class="button text-white font-medium rounded-lg me-2 mb-2 px-5 py-2.5 bg-gray-700 focus:ring-4 focus:ring-gray-300" id="addInputbtn">Add url</button>
@@ -83,6 +84,7 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="main.ts"></script>
 </body>
 
 </html>
