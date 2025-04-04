@@ -1,6 +1,10 @@
 /**
  * This file handles POST requests
- */
+   - things to add
+      index.html to send the requests
+          
+
+*/
 
 import http from "http";
 import { VercelRequest, VercelResponse } from "@vercel/node";
@@ -15,6 +19,7 @@ function checkUrl(url: string) {
     http
       .get(url, (res) => {
         resolve({ url, status: res.statusCode || "Unknown" });
+
       })
       .on("error", (err) => {
         resolve({ url, status: err.message });
