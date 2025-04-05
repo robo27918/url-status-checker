@@ -33,3 +33,18 @@ getStatusBtn === null || getStatusBtn === void 0 ? void 0 : getStatusBtn.addEven
     let inputUrls = Array.from(inputElements).map((element) => element.value);
     console.log("values:", inputUrls);
 });
+// function to fetch array of urls
+async function fetchURLS(input_urls){
+        options = {
+            method:'POST',
+            headers:{
+                'Content-type': 'application/json',
+            },
+            body:JSON.stringify({
+                urls:input_urls
+            }),
+        }
+        const vercelHanlderUrl = "https://url-status-checker.vercel.app/check-urls.js"
+        const data = await(vercelHanlderUrl,options)
+        
+    }
