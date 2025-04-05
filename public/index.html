@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL status checker</title>
 </head>
-<body class="bg-gray-500">
-    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-white">URL Checker</h1>
-    <div class="container  flex flex-col gap-5 w-full">
+<body class="flex flex-row justify-center w-full items-center h-screen border border-red-300 bg-gray-500">
+    <div class="container flex flex-col gap-5 items-center">
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-white">URL Checker</h1>
+
         <div id="inputContainer"class="mb-6 flex flex-col gap-2 justify-center items-center">
             <label for="url" class="text-white block mb-2 font-semibold">Enter url</label>    
-            <input class="urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block" type="url" id="url-1" pattern="https?:\/\/[^\s/$.?#].[^\s]*"  required>
+            <input class="urlInput border text-xl border-gray-700 text-center rounded-full bg-gray-100 w-90 h-12 block" type="url" id="url-1" pattern="https?:\/\/[^\s/$.?#].[^\s]*"  required>
         </div>
         
     
