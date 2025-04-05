@@ -12,3 +12,17 @@ function testFunction(
 ) {
   return parameter1 + parameter2 + parameter3;
 }
+
+interface listNode{
+  value: Number|string,
+  neighbor:listNode |null,
+
+}
+
+function printNode(node:listNode){
+  console.log("The value is:",node.value)
+  console.log("The  neighbor's value is",node.neighbor?.value);
+}
+
+let myNode:listNode = {value:3,neighbor:null};
+printNode(myNode)
