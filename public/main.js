@@ -7,7 +7,7 @@ let inputContainer = document.getElementById("inputContainer");
 //Button event listeners
 addInputBtn === null || addInputBtn === void 0 ? void 0 : addInputBtn.addEventListener("click", () => {
     console.log("addInputButton clicked");
-    let inputBoxStyle = "urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block";
+    let inputBoxStyle = "urlInput text-center border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block";
     let inputBox = document.createElement("input");
     inputBox.setAttribute("class", inputBoxStyle);
     inputBox.setAttribute("type", "url");
