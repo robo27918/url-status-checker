@@ -1,3 +1,5 @@
+import { TIMEOUT } from "node:dns";
+
 console.log("hello from main.ts");
 //Getting necessary DOM elements
 let addInputBtn = document.getElementById("addInputBtn");
@@ -18,7 +20,7 @@ addInputBtn?.addEventListener("click", () => {
   inputContainer?.appendChild(inputBox);
 });
 
-getStatusBtn?.addEventListener("click", () => {
+getStatusBtn?.addEventListener("click", async() => {
   console.log("getStatus btn clicked");
   //TODO: find a way to validate user Input
   let inputElements = document.getElementsByClassName("urlInput");
@@ -36,4 +38,44 @@ getStatusBtn?.addEventListener("click", () => {
   //@ts-ignore: input element does indeed have a value attribute :)
   let inputUrls = Array.from(inputElements).map((element) => element.value);
   console.log("values:", inputUrls);
+  let res = await fetchURLS(inputUrls)
+  console.log("result after async call ",res)
+  console.log("done....")
+  
 });
+
+// function to fetch array of urls
+async function fetchURLS(input_urls){
+  console.log("call to fetchURLS")
+  let options = {
+      method:'POST',
+      headers:{
+          'Content-type': 'application/json',
+      },
+      body:JSON.stringify({
+          urls:input_urls
+      }),
+      //adds 5 second timeout
+      signal:AbortSignal.timeout(5000)
+  }
+  const vercelHanlderUrl = "https://url-status-checker.vercel.app/check-urls.js"
+  const response = await fetch(vercelHanlderUrl,options)
+  console.log("status",response.status)
+  if (!response.ok){
+    if(response.status ==404){
+      throw new Error("404 error")
+    }
+    else if(response.status==500){
+      throw new Error("Server error")
+    }
+    else if(response.status==408){
+      throw new Error("Timeout error")
+    }
+    else{
+      throw new Error("Network response was not ok")
+    }
+  }
+  else{
+    console.log(response.json())
+  }
+}

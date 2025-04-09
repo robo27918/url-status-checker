@@ -1,8 +1,8 @@
 []index file for sending requests with a nice formatted table of all the responses.
         [x] created basic table
         [x] style button and input section
-        [] add button functionality for adding url inputs
-        []
+        [x] add button functionality for adding url inputs
+        [] add inidaction of succes on page after clicking post
 [] created script file (main.ts) to handle user input
 
 []Support https://: Use the https module for URLs that require secure connections.
@@ -13,4 +13,4 @@
 
 [x]Input URL validation: Make sure the string looks like a valid URL before trying to call it.
 
-[] fix vercel deployment issue.
+[x] fix vercel deployment issue.
