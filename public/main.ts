@@ -1,4 +1,4 @@
-import { TIMEOUT } from "node:dns";
+
 
 console.log("hello from main.ts");
 //Getting necessary DOM elements
@@ -37,16 +37,24 @@ getStatusBtn?.addEventListener("click", async() => {
   }
   //@ts-ignore: input element does indeed have a value attribute :)
   let inputUrls = Array.from(inputElements).map((element) => element.value);
-  console.log("values:", inputUrls);
-  let res = await fetchURLS(inputUrls)
-  console.log("result after async call ",res)
-  console.log("done....")
-  
+  console.log("values from inputUrls:", inputUrls);
+  try{
+    let res = await fetchURLS(inputUrls)
+    console.log("result after async call ",res)
+    console.log("done....")
+    
+  }
+  catch(err){
+    console.log("Error in fetchURLs",err)
+    alert("something has gone wrong...")
+  }
+  console.log("out of try-catch...")
+
 });
 
 // function to fetch array of urls
-async function fetchURLS(input_urls){
-  console.log("call to fetchURLS")
+async function fetchURLS(input_urls:string[]){
+  console.log("call to fetchURLS...")
   let options = {
       method:'POST',
       headers:{
@@ -56,7 +64,7 @@ async function fetchURLS(input_urls){
           urls:input_urls
       }),
       //adds 5 second timeout
-      signal:AbortSignal.timeout(5000)
+      signal:AbortSignal.timeout(2000)
   }
   const vercelHanlderUrl = "https://url-status-checker.vercel.app/check-urls.js"
   const response = await fetch(vercelHanlderUrl,options)
@@ -76,6 +84,8 @@ async function fetchURLS(input_urls){
     }
   }
   else{
-    console.log(response.json())
+    const data = await response.json()
+    console.log("data", data)
+    return data
   }
 }
