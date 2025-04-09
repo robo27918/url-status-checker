@@ -30,15 +30,15 @@ function checkUrl(url: string) {
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   //CORS headers for allowing requests from any origin
-  // res.setHeader("Access-Control-Allow-Origin","*")//allows all origins
-  // res.setHeader("Access-Control-Allow-Methods","POST","OPTIONS");
-  // res.setHeader("Access-Control-Allow-Headers","Content-Type")
+  res.setHeader("Access-Control-Allow-Origin","*")//allows all origins
+  res.setHeader("Access-Control-Allow-Methods","POST","OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers","Content-Type")
 
-  // if(req.method === "OPTIONS"){
-  //   //Handling preflight requests 
-  //   res.status(200).end();
-  //   return;
-  // }
+  if(req.method === "OPTIONS"){
+    //Handling preflight requests 
+    res.status(200).end();
+    return;
+  }
   
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
