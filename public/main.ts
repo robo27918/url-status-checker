@@ -64,7 +64,8 @@ async function fetchURLS(input_urls:string[]){
           urls:input_urls
       }),
       //adds 5 second timeout
-      signal:AbortSignal.timeout(2000)
+      signal:AbortSignal.timeout(2000),
+      mode:"cors"
   }
   const vercelHanlderUrl = "https://url-status-checker.vercel.app/check-urls.js"
   const response = await fetch(vercelHanlderUrl,options)
