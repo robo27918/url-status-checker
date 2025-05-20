@@ -16,7 +16,7 @@ let inputContainer = document.getElementById("inputContainer");
 //Button event listeners
 addInputBtn === null || addInputBtn === void 0 ? void 0 : addInputBtn.addEventListener("click", () => {
     console.log("addInputButton clicked");
-    let inputBoxStyle = "urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block";
+    let inputBoxStyle = "urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block text-center";
     let inputBox = document.createElement("input");
     inputBox.setAttribute("class", inputBoxStyle);
     inputBox.setAttribute("type", "url");
@@ -45,7 +45,6 @@ getStatusBtn === null || getStatusBtn === void 0 ? void 0 : getStatusBtn.addEven
     let res = null;
     try {
         res = yield fetchURLS(inputUrls);
-        // //TODO: handle all the inputs
     }
     catch (err) {
         console.log("Error in fetchURLs", err);

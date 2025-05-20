@@ -11,7 +11,7 @@ let inputContainer = document.getElementById("inputContainer");
 addInputBtn?.addEventListener("click", () => {
   console.log("addInputButton clicked");
   let inputBoxStyle =
-    "urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block";
+    "urlInput border text-xl border-gray-700 rounded-full bg-gray-100 w-90 h-12 block text-center";
   let inputBox = document.createElement("input");
   inputBox.setAttribute("class", inputBoxStyle);
   inputBox.setAttribute("type", "url");
@@ -43,11 +43,6 @@ getStatusBtn?.addEventListener("click", async() => {
   try{
  
     res = await fetchURLS(inputUrls)
-    // //TODO: handle all the inputs
- 
-    
-    
-    
   }
   catch(err){
     console.log("Error in fetchURLs",err)
@@ -76,7 +71,6 @@ async function fetchURLS(input_urls:string[]){
           urls:input_urls
       }),
       //adds 5 second timeout
-   
       signal:AbortSignal.timeout(2000),
       
   }
