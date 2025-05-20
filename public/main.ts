@@ -40,8 +40,8 @@ getStatusBtn?.addEventListener("click", async() => {
   console.log("values from inputUrls:", inputUrls);
   try{
     let res = await fetchURLS(inputUrls)
-    console.log("result after async call ",res)
-    console.log("done....")
+    //TODO: handle all the inputs
+    
     
   }
   catch(err){
@@ -90,4 +90,15 @@ async function fetchURLS(input_urls:string[]){
     console.log("data", data)
     return data
   }
+}
+
+function addTableRow(data){
+   let tableBody = document.getElementById("urlTable");
+   let newRow = document.createElement("tr");
+   newRow.className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600";
+   let col1 = document.createElement('td');
+   let div1 = document.createElement('div');// div for styling purposes
+   let col2 = document.createElement('td');
+   let col3 = document.createElement('td');
+
 }
