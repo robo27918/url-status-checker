@@ -1,11 +1,9 @@
-
-
 console.log("hello from main.ts");
 //Getting necessary DOM elements
 let addInputBtn = document.getElementById("addInputBtn");
 let getStatusBtn = document.getElementById("getStatusBtn");
-
 let inputContainer = document.getElementById("inputContainer");
+
 
 //Button event listeners
 addInputBtn?.addEventListener("click", () => {
@@ -43,6 +41,7 @@ getStatusBtn?.addEventListener("click", async() => {
   try{
  
     res = await fetchURLS(inputUrls)
+   
   }
   catch(err){
     console.log("Error in fetchURLs",err)
@@ -53,6 +52,7 @@ getStatusBtn?.addEventListener("click", async() => {
     res.forEach((element: { url: string | null; status: string | null; }) => {
       addTableRow(element);
     });
+    localStorage.setItem("urls",JSON.stringify(res));
   }
   console.log("at end of function body...")
    
@@ -132,3 +132,20 @@ function addTableRow(data: { url: string | null; status: string | null; }){
 
 
 }
+
+//function to load table data from local storage
+document.addEventListener("DOMContentLoaded",()=>{
+  if(localStorage.getItem("urls")){
+    console.log("something in the local storage...")
+    //read from local storage
+    let urls = localStorage.getItem("urls")
+    if (urls !== null){
+      urls = JSON.parse(urls);
+      urls.forEach((element: { url: string | null; status: string | null; }) => {
+        addTableRow(element);
+       });
+
+    }
+
+  }
+});

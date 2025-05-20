@@ -55,6 +55,7 @@ getStatusBtn === null || getStatusBtn === void 0 ? void 0 : getStatusBtn.addEven
         res.forEach((element) => {
             addTableRow(element);
         });
+        localStorage.setItem("urls", JSON.stringify(res));
     }
     console.log("at end of function body...");
 }));
@@ -127,3 +128,17 @@ function addTableRow(data) {
     tableBody === null || tableBody === void 0 ? void 0 : tableBody.appendChild(newRow);
     console.log("should have added new row....");
 }
+//function to load table data from local storage
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("urls")) {
+        console.log("something in the local storage...");
+        //read from local storage
+        let urls = localStorage.getItem("urls");
+        if (urls !== null) {
+            urls = JSON.parse(urls);
+            urls.forEach((element) => {
+                addTableRow(element);
+            });
+        }
+    }
+});
