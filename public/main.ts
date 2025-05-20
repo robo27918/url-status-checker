@@ -38,9 +38,14 @@ getStatusBtn?.addEventListener("click", async() => {
   //@ts-ignore: input element does indeed have a value attribute :)
   let inputUrls = Array.from(inputElements).map((element) => element.value);
   console.log("values from inputUrls:", inputUrls);
+  console.log("before try-catch")
+  let res = null;
   try{
-    let res = await fetchURLS(inputUrls)
-    //TODO: handle all the inputs
+ 
+    res = await fetchURLS(inputUrls)
+    // //TODO: handle all the inputs
+ 
+    
     
     
   }
@@ -49,6 +54,13 @@ getStatusBtn?.addEventListener("click", async() => {
     alert("something has gone wrong...")
   }
   console.log("out of try-catch...")
+  if (res !=null){
+    res.forEach((element: { url: string | null; status: string | null; }) => {
+      addTableRow(element);
+    });
+  }
+  console.log("at end of function body...")
+   
 
 });
 
@@ -70,7 +82,7 @@ async function fetchURLS(input_urls:string[]){
   }
   const vercelHanlderUrl = "https://url-status-checker.vercel.app/api/check-urls"
   const response = await fetch(vercelHanlderUrl,options)
-  console.log("status",response.status)
+  // console.log("status",response.status)
   if (!response.ok){
     if(response.status ==404){
       throw new Error("404 error")
@@ -87,18 +99,42 @@ async function fetchURLS(input_urls:string[]){
   }
   else{
     const data = await response.json()
-    console.log("data", data)
     return data
   }
 }
 
-function addTableRow(data){
+function addTableRow(data: { url: string | null; status: string | null; }){
+   console.log("called addTableRow")
    let tableBody = document.getElementById("urlTable");
    let newRow = document.createElement("tr");
    newRow.className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600";
    let col1 = document.createElement('td');
    let div1 = document.createElement('div');// div for styling purposes
+   let div1Inner = document.createElement('div')
+   col1.className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white";
+   div1.className="ps-3";
+   div1Inner.className="text-xl font-semibold";
+   div1Inner.textContent=data.url
+   div1.appendChild(div1Inner);
+   col1.appendChild(div1);
+
    let col2 = document.createElement('td');
+   col2.className="text-xl px-6 py-4";
+   col2.textContent=data.status;
+
    let col3 = document.createElement('td');
+   col3.className="px-6 py-4";
+   let div3 = document.createElement('div');
+   div3.className="flex items-center";
+   let div3Inner = document.createElement('div');
+   div3Inner.className="h-2.5 w-2.5 rounded-full bg-green-500 me-2";
+   div3.appendChild(div3Inner);
+   col3.appendChild(div3);
+   newRow.appendChild(col1);
+   newRow.appendChild(col2);
+   newRow.appendChild(col3);
+   tableBody?.appendChild(newRow);
+   console.log("should have added new row....")
+
 
 }
